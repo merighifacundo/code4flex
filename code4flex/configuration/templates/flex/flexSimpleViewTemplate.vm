@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="618" height="566" creationComplete="initGrid()">
+	
+	<mx:Script>
+		<![CDATA[
+			import ${viewModel.event.modelClass.namespace}.${viewModel.event.modelClass.className};
+			import ${viewModel.event.namespace}.${viewModel.event.className};
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import mx.collections.ArrayCollection;
+			import mx.utils.ArrayUtil;
+			import mx.utils.XMLUtil;
+			import mx.controls.Alert;
+			import ${modelApplication.namespace}.${modelApplication.className};
+
+			[Bindable]
+			private var selectedRow:${viewModel.event.modelClass.className};
+			[Bindable]
+			private var insertRow:${viewModel.event.modelClass.className};
+			
+			[Bindable]
+			private var searchRow:${viewModel.event.modelClass.className};
+
+			private function changeHandler(event:Event):void {
+               selectedRow  = ${viewModel.event.modelClass.className}(DataGrid(event.target).selectedItem);
+            }
+
+			public function cargar():void{
+			
+				var event:${viewModel.event.className} = new ${viewModel.event.className}(${viewModel.event.className}.${viewModel.methodNameToPopulateGrid});
+				event.dispatch();
+				
+			}
+			
+			
+			public function initGrid():void{
+				
+			var classInfo:XML = describeType(new ${viewModel.event.modelClass.className}());
+			classInfo..accesso;
+           	var arrayDeFields:ArrayCollection = new ArrayCollection();
+           
+			
+            
+			
+            // List the object's variables, their values, and their types.
+             for each (var a:XML in classInfo..accessor) {
+               arrayDeFields.addItem( a.@name );
+            }
+            
+            var arrayDeColumnas:Array = new Array(arrayDeFields.length);
+			var i:int = 0;
+			for each(var field:String in arrayDeFields){
+			arrayDeColumnas[i] = new DataGridColumn();
+			arrayDeColumnas[i].headerText = field;
+			arrayDeColumnas[i].dataField = field;
+			i++;
+			}
+			grid.columns = arrayDeColumnas;
+
+
+			}
+			
+			public function actualizarObjeto():void{
+				
+
+				#foreach( $property in $viewModel.event.modelClass.properties )
+				selectedRow.${property.propertyName} = ${property.propertyName}.text;
+
+				#end
+				var event:${viewModel.event.className} = new ${viewModel.event.className}(${viewModel.event.className}.${viewModel.methodToUpdateObject});
+				event.parameter = selectedRow;
+				event.dispatch();
+			}
+			
+			
+			public function nuevoObjeto():void{
+				
+				insertRow = new ${viewModel.event.modelClass.className}();
+				#foreach( $property in $viewModel.event.modelClass.properties )
+				insertRow.${property.propertyName} = ${property.propertyName}.text;
+
+				#end
+				var event:${viewModel.event.className} = new ${viewModel.event.className}(${viewModel.event.className}.${viewModel.methodToInsertObject});
+				event.parameter = insertRow;
+				event.dispatch();
+			}
+			
+			public function pruebaBusquedaObjeto():void{
+			searchRow = new ${viewModel.event.modelClass.className}();
+				#foreach( $property in $viewModel.event.modelClass.properties )
+				searchRow.${property.propertyName} = ${property.propertyName}.text;
+
+				#end
+				var event:${viewModel.event.className} = new ${viewModel.event.className}(${viewModel.event.className}.${viewModel.methodNameToPopulateGridFilter});
+				event.parameter = searchRow;
+				event.dispatch();
+			}
+			
+		]]>
+	</mx:Script>
+	
+	<mx:DataGrid id="grid" x="41" y="46" width="524" height="205" dataProvider="{${modelApplication.className}.getInstance().${modelApplication.obtenerDtoArrayVariable($viewModel.event.modelClass)}}" change="changeHandler(event)">
+		
+	</mx:DataGrid>
+	<mx:Button x="501" y="16" label="Cargar" click="cargar()"/>
+	
+	<mx:Form x="41" y="274" width="524" height="230">
+	
+	<mx:FormHeading label="Selected ${viewModel.event.modelClass.className}" />
+	#foreach( $property in $viewModel.event.modelClass.properties )
+	
+	<mx:FormItem label="$property.propertyName">
+            <mx:TextInput id="$property.propertyName" text="{selectedRow.${property.propertyName}}" />
+    </mx:FormItem>
+	
+	#end
+	<mx:Button click="actualizarObjeto()" label="update"/>
+	<mx:Button click="nuevoObjeto()" label="save new"/>
+	<mx:Button click="pruebaBusquedaObjeto()" label="buscamela"/>
+	</mx:Form>
+	
+	
+</mx:Canvas>

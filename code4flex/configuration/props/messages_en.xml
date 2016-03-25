@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+
+<properties>
+<comment>
+<![CDATA[Code 4 Flex Plugin messages]]>
+</comment>
+<entry key="com.c4f.wizard.title"><![CDATA[Code4Flex - Code Generation for Flex v.0.2.9]]></entry>
+<entry key="com.c4f.wizard.description"><![CDATA[This wizard creates a new Code Generation Flex Integration]]></entry>
+<entry key="com.c4f.wizard.dbloader.testconn"><![CDATA[Test Connection]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.title"><![CDATA[MySql Connection Settings]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.host"><![CDATA[Host]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.txtHostDefault"><![CDATA[localhost]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.dbname"><![CDATA[DB Name]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.username"><![CDATA[UserName]]></entry>
+<entry key="com.c4f.wizard.dbloader.mysqlsettings.hostHelpText"><![CDATA[Ip or HostName of your MySql DB]]></entry>
+</properties>

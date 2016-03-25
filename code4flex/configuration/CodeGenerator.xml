@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- Bean de generacion de Php! -->
+	<bean id="codeGeneratorPhp" class="org.code4flex.codegenerators.PhpCodeGenerator">
+		<property name="generatorPhpDao">
+			<bean
+				class="org.code4flex.codegenerators.velocity.php.PhpDaoClassCodeGenerator">
+				<property name="template" value="/templates/php/phpDaoTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorPhp" />
+			</bean>
+		</property>
+		<property name="generatorEntityConveter">
+			<bean
+				class="org.code4flex.codegenerators.velocity.php.PhpEntityConverterClassCodeGenerator">
+				<property name="template" value="/templates/php/phpModelDBResulsetConverter.vm" />
+				<property name="mainGenerator" ref="codeGeneratorPhp" />
+			</bean>
+		</property>
+		<property name="generatorPhpModelVelocity">
+			<bean
+				class="org.code4flex.codegenerators.velocity.php.PhpModelVelocityCodeGenerator">
+				<property name="template" value="/templates/php/phpModelTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorPhp" />
+			</bean>
+		</property>
+		<property name="generatorConnection">
+			<bean
+				class="org.code4flex.codegenerators.velocity.php.MySqlConnectionClass">
+				<property name="template" value="/templates/php/mysqlconnectionclass.vm" />
+				<property name="mainGenerator" ref="codeGeneratorPhp" />
+			</bean>
+		</property>
+		<property name="generatorPhpDaoTester">
+			<bean
+				class="org.code4flex.codegenerators.velocity.php.PhpDaoTesterCodeGenerator">
+				<property name="template" value="/templates/php/phpDaoTesterTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorPhp" />
+			</bean>
+		</property>
+		<property name="generatorAmfProyect">
+			<bean
+				class="org.code4flex.codegenerators.resourcexporter.UnzipResourceExporter">
+				<property name="codeGenerator" ref="codeGeneratorPhp" />
+				<property name="sourceDirectory" value="/templates/php/"/>
+				<property name="resourceToExport" value="amfbuild.zip" />
+			</bean>
+		</property>
+		<property name="phpScriptModelGenerator">
+			<bean class="org.code4flex.generators.PhpScriptModelGenerator"></bean>
+		</property>
+		<property name="phpDaoScriptModelGenerator">
+			<ref bean="phpDaoScriptGenerator" />
+		</property>
+	</bean>
+	<!-- Fin Bean de generacion de Php! -->
+	<!-- beans de generacion de Flex: {Flex (Cairngorm),Flex (Flex Mate)}-->
+	<!-- CodeGenerator de Flex con Cairngorm -->
+	<bean id="codeGeneratorFlexCairngorm" class="org.code4flex.codegenerators.FlexCairngormCodeGenerator">
+		<!--  this will be replaced by the metaas codegenerators -->
+		<!-- Old velocity code generators -->
+		<!-- 
+		<property name="genASModel">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.ActionScriptModelCodeGenerator">
+				<property name="template" value="/templates/actionscript/actionScriptModelTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlex" />
+			</bean>
+		</property>
+		<property name="genASCommands">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.ActionScriptFlexCairngormCommandCodeGenerator">
+				<property name="template" value="/templates/actionscript/flexCairngormCommandTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlex" />
+			</bean>
+		</property>
+		<property name="genASEvents">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.ActionScriptFlexCairngormEventCodeGenerator">
+				<property name="template" value="/templates/actionscript/flexCairngormEventTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlex" />
+			</bean>
+		</property>
+		<property name="genASController">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.ActionScriptFlexCairngormControllerCodeGenerator">
+				<property name="template" value="/templates/actionscript/flexCairngormControllerTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlex" />
+			</bean>
+		</property>
+		<property name="genASFlexModelApp">
+			<bean			
+				class="org.code4flex.codegenerators.velocity.actionscript.ActionScriptFlexModelApplicationCodeGenerator">
+				<property name="template" value="/templates/actionscript/flexModelApplicationTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlex" />
+			</bean>
+		</property>
+		 -->
+		<!-- END this will be replaced by the metaas codegenerators -->
+		
+		<property name="genASModel">
+			<bean
+				class="org.code4flex.codegenerators.metaas.ActionScriptClassCodeGenerator">
+				
+			</bean>
+		</property>
+		<property name="genASCommands">
+			<bean
+				class="org.code4flex.codegenerators.metaas.ActionScriptFlexCairngormCommandCodeGenerator">
+			</bean>
+		</property>
+		<property name="genASEvents">
+			<bean
+				class="org.code4flex.codegenerators.metaas.ActionScriptFlexCairngormEventCodeGenerator">
+
+			</bean>
+		</property>
+		<property name="genASController">
+			<bean
+				class="org.code4flex.codegenerators.metaas.ActionScriptFlexCairngormControllerCodeGenerator">
+		
+			</bean>
+		</property>
+		<property name="genASFlexModelApp">
+			<bean			
+				class="org.code4flex.codegenerators.metaas.ActionScriptFlexModelApplicationCodeGenerator">
+				
+			</bean>
+		</property>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<property name="generatorFlexServiceConfig">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.FlexServiceConfigGenerator">
+				<property name="template" value="/templates/flex/serviceconfigtemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+			</bean>
+		</property>
+		
+		<property name="generatorFlexSimpleView">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.FlexSimpleViewGenerator">
+				<property name="template" value="/templates/flex/flexSimpleViewTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+			</bean>
+		</property>
+		
+		<property name="generatorProjectConfig">
+			<bean
+				class="org.code4flex.generators.model.actionscript.ProyectConfigurationTemplate">
+				<property name="template" value="/templates/flex/proyectConfigurationTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+			</bean>
+		</property>
+		<property name="generatorASConfig">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.FlexProjectConfigurationTemplate">
+				<property name="template"
+					value="/templates/flex/actionScriptPropertiesConfgurationTemplate.vm" />
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+			</bean>
+		</property>
+		<property name="actionScriptModelGenerator">
+			<bean class="org.code4flex.generators.ActionScriptModelGenerator">
+			
+			
+			
+			</bean>
+		</property>
+		<property name="generatorFlexCairngormServiceLocator">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.FlexCairngormServiceLocatorGenerator">
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+				<property name="template" value="/templates/flex/flexCairngormservicelocator.vm" />
+			</bean>
+		</property>
+		<property name="generatorEntryPoint">
+			<bean
+				class="org.code4flex.codegenerators.velocity.actionscript.FlexEntryPointCodeGenerator">
+				<property name="mainGenerator" ref="codeGeneratorFlexCairngorm" />
+				<property name="template" value="/templates/flex/mainApplicationCairngormTemplate.vm" />
+			</bean>
+		</property>
+		<property name="serviceExposerGenerator">
+			<ref bean="phpDaoScriptGenerator" />
+		</property>
+		<property name="generatorFlexLibrary">
+			<bean
+				class="org.code4flex.codegenerators.resourcexporter.FlexLibraryResourceExporter">
+				<property name="codeGenerator" ref="codeGeneratorFlexCairngorm" />
+				<property name="resourceToExport" value="Cairngorm.swc" />
+				<property name="sourceDirectory" value="/templates/flex/"/>
+				<property name="destinationDirectory" value="libs" />
+			</bean>
+		</property>
+		<property name="generatorFlexproject">
+			<bean
+				class="org.code4flex.codegenerators.resourcexporter.UnzipResourceExporter">
+				<property name="codeGenerator" ref="codeGeneratorFlexCairngorm" />
+				<property name="sourceDirectory" value="/templates/flex/"/>
+				<property name="resourceToExport" value="projecto_flex.zip" />
+			</bean>
+		</property>
+		<property name="cairngormCommandModelGenerator">
+		
+			<ref bean="flexCairngormCommandCodeGenerator" />
+		</property>
+	</bean>
+	<!--
+		Beans para la generación de codigo de distintos metodos del dao y
+		tambien para la generación del dao en si en php
+	-->
+	<bean id="daoMethodGetAll" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>getAll</value>
+		</property>
+		<property name="queryVariable">
+			<value>sqlSelect</value>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+	var ${esc.dollar}sqlSelect = 'select #set ($i = 0)  #foreach( $field in $method.daoClass.dtoTable.fields) #if($i > 0 ) , #end ${field.columnName} #set($i = $i + 1)  #end from ${method.daoClass.dtoTable.tableName}';
+	
+   	function ${method.methodName}(#set ($i = 0) #foreach( $parameter in $method.parameterList) #if($i > 0 ) , #end $parameter  #set($i = $i + 1)   #end){
+   		${esc.dollar}conn = MySqlConnection::getInstance()->connectToDb();
+   		
+   		${esc.dollar}rs  = mysql_query(${esc.dollar}this->${method.queryVariable}, ${esc.dollar}conn);
+   		${esc.dollar}converter = new ${method.daoClass.className}Converter();
+   		${esc.dollar}list = array();
+   		for(${esc.dollar}rowNumber = 0 ;${esc.dollar}row = mysql_fetch_row(${esc.dollar}rs);${esc.dollar}rowNumber++){
+   			${esc.dollar}list[${esc.dollar}rowNumber] = ${esc.dollar}converter->convertToEntity(${esc.dollar}row);
+   		
+   		}
+   		return ${esc.dollar}list;
+   	}
+   	
+		]]></value>
+		</property>
+	</bean>
+	<bean id="daoMethodGetByPrimaryKey" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>getByPrimaryKey</value>
+		</property>
+		<property name="queryVariable">
+			<value>sqlGetSigleRow</value>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_GET_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+	var ${esc.dollar}sqlGetSigleRow = 'select #set ($i = 0)  #foreach( $field in $method.daoClass.dtoTable.fields) #if($i > 0 ) , #end ${field.columnName} #set($i = $i + 1)  #end from ${method.daoClass.dtoTable.tableName}';
+	
+   	function ${method.methodName}(#set ($i = 0) #foreach( $parameter in $method.parameterList) #if($i > 0 ) , #end $parameter  #set($i = $i + 1)   #end){
+   		${esc.dollar}conn = MySqlConnection::getInstance()->connectToDb();
+   		${esc.dollar}sqlGetSigleRow =${esc.dollar}this->${method.queryVariable};
+   		${esc.dollar}sqlGetSigleRow = ${esc.dollar}sqlGetSigleRow . ${esc.dollar}this->generatePrimaryKeyWhereCondition(${esc.dollar}object);
+   		${esc.dollar}rs  = mysql_query(${esc.dollar}sqlGetSigleRow, ${esc.dollar}conn);
+   		${esc.dollar}converter = new ${method.daoClass.className}Converter();
+   		${esc.dollar}list = array();
+   		for(${esc.dollar}rowNumber = 0 ;${esc.dollar}row = mysql_fetch_row(${esc.dollar}rs);${esc.dollar}rowNumber++){
+   			${esc.dollar}list[${esc.dollar}rowNumber] = ${esc.dollar}converter->convertToEntity(${esc.dollar}row);
+   		
+   		}
+   		return ${esc.dollar}list;
+   	}
+   	
+		]]></value>
+		</property>
+	</bean>
+	<bean id="daoMethodGetFiltered" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>getFiltered</value>
+		</property>
+		<property name="queryVariable">
+			<value>sqlFiltered</value>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID_FILTER" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+	var ${esc.dollar}sqlFiltered = 'select #set ($i = 0)  #foreach( $field in $method.daoClass.dtoTable.fields) #if($i > 0 ) , #end ${field.columnName} #set($i = $i + 1)  #end from ${method.daoClass.dtoTable.tableName}';
+	
+   	function ${method.methodName}(${esc.dollar}_object){
+   		${esc.dollar}conn = MySqlConnection::getInstance()->connectToDb();
+   		${esc.dollar}object =  new ${method.daoClass.dtoClass.className}();
+   		${esc.dollar}object->init(${esc.dollar}_object);
+   		${esc.dollar}sqlFiltered =${esc.dollar}this->${method.queryVariable};
+   		${esc.dollar}sqlFiltered = ${esc.dollar}sqlFiltered . ${esc.dollar}this->generateWhereConditionWithoutNull(${esc.dollar}object);
+   		${esc.dollar}rs  = mysql_query(${esc.dollar}sqlFiltered, ${esc.dollar}conn);
+   		${esc.dollar}converter = new ${method.daoClass.className}Converter();
+   		${esc.dollar}list = array();
+   		for(${esc.dollar}rowNumber = 0 ;${esc.dollar}row = mysql_fetch_row(${esc.dollar}rs);${esc.dollar}rowNumber++){
+   			${esc.dollar}list[${esc.dollar}rowNumber] = ${esc.dollar}converter->convertToEntity(${esc.dollar}row);
+   		
+   		}
+   		return ${esc.dollar}list;
+   	}
+   	
+		]]></value>
+		</property>
+	</bean>
+	<bean id="daoInsert" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>insert</value>
+		</property>
+		<property name="queryVariable">
+			<value>sqlInsert</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>_object</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_INSERT_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+	var ${esc.dollar}sqlInsert = "insert into ${method.daoClass.dtoTable.tableName} ( #set ($i = 0)  #foreach( $field in $method.daoClass.dtoTable.fields) #if(!$field.key) #if($i > 0 ) , #end ${field.columnName} #set($i = $i + 1) #end #end ) values (";
+	
+   	function ${method.methodName}(${esc.dollar}_object){
+   		${esc.dollar}conn = MySqlConnection::getInstance()->connectToDb();
+   		${esc.dollar}object =  new ${method.daoClass.dtoClass.className}();
+   		${esc.dollar}object->init(${esc.dollar}_object);
+   		${esc.dollar}sqlInsert = ${esc.dollar}this->sqlInsert;
+   		#set ($i = 0)  #foreach( $field in $method.daoClass.dtoClass.properties) 
+   		#if(!$field.key)
+   		${esc.dollar}sqlInsert = ${esc.dollar}sqlInsert  #if($i > 0 ) . ","  #end  .    ((${esc.dollar}object->${field.propertyName}==NULL)?'NULL':      #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date')  "'" .  #end ${esc.dollar}object->${field.propertyName} #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date') . "'"  #end);
+   		
+   		#set($i = $i + 1) 
+   		#end
+   		#end
+   		${esc.dollar}sqlInsert = ${esc.dollar}sqlInsert . " )";
+   		${esc.dollar}rs  = mysql_query(${esc.dollar}sqlInsert, ${esc.dollar}conn);
+   		
+   		return ${esc.dollar}rs;
+   	}
+   	
+		]]></value>
+		</property>
+	</bean>
+	<bean id="daoUpdate" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>update</value>
+		</property>
+		<property name="queryVariable">
+			<value>sqlUpdate</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>_object</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_UPDATE_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+	var ${esc.dollar}sqlUpdate = "update ${method.daoClass.dtoTable.tableName} set ";
+	
+   	function ${method.methodName}(${esc.dollar}_object){
+   		${esc.dollar}conn = MySqlConnection::getInstance()->connectToDb();
+   		${esc.dollar}object =  new ${method.daoClass.dtoClass.className}();
+   		${esc.dollar}object->init(${esc.dollar}_object);
+   		${esc.dollar}sqlUpdate = ${esc.dollar}this->sqlUpdate;
+   		#set ($i = 0)  #foreach( $field in $method.daoClass.dtoClass.properties) 
+   		${esc.dollar}sqlUpdate = ${esc.dollar}sqlUpdate  #if($i > 0 ) . ","  #end . "${field.tableColumnName} = " .    ((${esc.dollar}object->${field.propertyName}==NULL)?'NULL':      #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date')  "'" .  #end ${esc.dollar}object->${field.propertyName} #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date') . "'"  #end);
+   		#set($i = $i + 1)  #end
+   		${esc.dollar}sqlUpdate = ${esc.dollar}sqlUpdate . ${esc.dollar}this->generatePrimaryKeyWhereCondition(${esc.dollar}object);
+   		${esc.dollar}rs  = mysql_query(${esc.dollar}sqlUpdate, ${esc.dollar}conn);
+   		
+   		return ${esc.dollar}rs;
+   	}
+   	
+		]]></value>
+		</property>
+	</bean>
+	
+	<!--
+	
+		modificado por usar velocity cambio para laburar con Metaas!
+		Beans para la generación de codigo de distintos metodos de flex
+		Para generar listeners que puedan recibir los distintos tipos de operaciones!
+	-->
+	<!-- 
+		<bean id="flexUpdateObject" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>updateObjectListener</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_UPDATE_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+			
+	public function updateObjectListener(e:ResultEvent):void{
+		if(e.result){
+			Alert.show("La transaccion fue ejecutada correctamente");
+		}else{
+			Alert.show("La transaccion no pudo ejecutarse");
+		}
+   	}
+		]]></value>
+		</property>
+	</bean>
+
+
+	<bean id="flexInsertObject" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>insertObjectListener</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_INSERT_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+			
+	public function insertObjectListener(e:ResultEvent):void{
+		if(e.result){
+			Alert.show("La transaccion fue ejecutada correctamente");
+		}else{
+			Alert.show("La transaccion no pudo ejecutarse");
+		}
+   	}
+		]]></value>
+		</property>
+	</bean>
+
+	
+	<bean id="flexDataGridObject" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>loadDataGridListener</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+			
+	public function loadDataGridListener(e:ResultEvent):void{
+		var _myModel:${method.command.actionScriptModelApplication.className} = ${method.command.actionScriptModelApplication.className}.getInstance();
+			_myModel.${method.command.actionScriptModelApplication.obtenerDtoArrayVariable(${method.command.relation.event.modelClass})}= new ArrayCollection( ArrayUtil.toArray(e.result) );
+   	}
+		]]></value>
+		</property>
+	</bean>
+		<bean id="flexDataGridObjectFilter" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>loadDataGridFilteredListener</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID_FILTER" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+			
+	public function loadDataGridFilteredListener(e:ResultEvent):void{
+		var _myModel:${method.command.actionScriptModelApplication.className} = ${method.command.actionScriptModelApplication.className}.getInstance();
+			_myModel.${method.command.actionScriptModelApplication.obtenerDtoArrayVariable(${method.command.relation.event.modelClass})}= new ArrayCollection( ArrayUtil.toArray(e.result) );
+   	}
+		]]></value>
+		</property>
+	</bean>
+	
+	<bean id="flexGetObject" class="org.code4flex.generators.model.methoddescriptors.GenerationCodeForTemplateMethodDescriptor">
+		<property name="parcialName">
+			<value>getObjectListener</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="methodType" value="METHOD_TYPE_GET_OBJECT" />
+		<property name="methodCodeTemplate">
+			<value><![CDATA[
+			
+	public function getObjectListener(e:ResultEvent):void{
+		if(e.result){
+			Alert.show("La transaccion fue ejecutada correctamente");
+		}else{
+			Alert.show("La transaccion no pudo ejecutarse");
+		}
+   	}
+		]]></value>
+		</property>
+	</bean>
+	 -->
+		<bean id="flexUpdateObject" class="org.code4flex.generators.model.methoddescriptors.MetaasMethodDescriptor">
+		<property name="information" ref="codeGeneratorFlexCairngorm" />
+		<property name="sourceDirectory" value="/templates/metaas"/>
+		<property name="xmlToMetaasFileName" value="updateObjectListenerMethod.xml"/>
+		<property name="methodType" value="METHOD_TYPE_UPDATE_OBJECT" />
+		<property name="parcialName">
+			<value>updateObjectListener</value>
+		</property>
+		<property name="returnType">
+			<value>void</value>
+		</property>
+		
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="argumentsType">
+			<list>
+				<value>ResultEvent</value>
+			</list>
+		</property>
+		
+		
+	</bean>
+
+
+	<bean id="flexInsertObject" class="org.code4flex.generators.model.methoddescriptors.MetaasMethodDescriptor">
+		<property name="information" ref="codeGeneratorFlexCairngorm" />
+		<property name="sourceDirectory" value="/templates/metaas"/>
+		<property name="xmlToMetaasFileName" value="updateObjectListenerMethod.xml"/>
+		<property name="methodType" value="METHOD_TYPE_INSERT_OBJECT" />
+		<property name="parcialName">
+			<value>insertObjectListener</value>
+		</property>
+		<property name="returnType">
+			<value>void</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="argumentsType">
+			<list>
+				<value>ResultEvent</value>
+			</list>
+		</property>
+		
+		
+	</bean>
+
+	
+	<bean id="flexDataGridObject" class="org.code4flex.generators.model.methoddescriptors.MetaasMethodDescriptor">
+		<property name="information" ref="codeGeneratorFlexCairngorm" />
+		<property name="sourceDirectory" value="/templates/metaas"/>
+		<property name="xmlToMetaasFileName" value="loadDataGridMethod.xml"/>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID" />
+		<property name="parcialName">
+			<value>loadDataGridListener</value>
+		</property>
+		<property name="returnType">
+			<value>void</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="argumentsType">
+			<list>
+				<value>ResultEvent</value>
+			</list>
+		</property>
+		
+		
+	</bean>
+		<bean id="flexDataGridObjectFilter" class="org.code4flex.generators.model.methoddescriptors.MetaasMethodDescriptor">
+		<property name="information" ref="codeGeneratorFlexCairngorm" />
+		<property name="sourceDirectory" value="/templates/metaas"/>
+		<property name="xmlToMetaasFileName" value="loadDataGridMethod.xml"/>
+		<property name="methodType" value="METHOD_TYPE_POPULATE_GRID_FILTER" />
+		<property name="parcialName">
+			<value>loadDataGridFilteredListener</value>
+		</property>
+		
+		<property name="returnType">
+			<value>void</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="argumentsType">
+			<list>
+				<value>ResultEvent</value>
+			</list>
+		</property>
+		
+	</bean>
+	
+	<bean id="flexGetObject" class="org.code4flex.generators.model.methoddescriptors.MetaasMethodDescriptor">
+		<property name="information" ref="codeGeneratorFlexCairngorm" />
+		<property name="sourceDirectory" value="/templates/metaas"/>
+		<property name="xmlToMetaasFileName" value="updateObjectListenerMethod.xml"/>
+		<property name="methodType" value="METHOD_TYPE_GET_OBJECT" />
+		<property name="parcialName">
+			<value>getObjectListener</value>
+		</property>
+		
+		<property name="returnType">
+			<value>void</value>
+		</property>
+		<property name="arguments">
+			<list>
+				<value>e</value>
+			</list>
+		</property>
+		<property name="argumentsType">
+			<list>
+				<value>ResultEvent</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Declaración de los Generadores de codigos -->
+	
+	<bean id="phpDaoScriptGenerator"
+		class="org.code4flex.generators.PhpDaoScriptModelGenerator">
+		<property name="methodsDescriptors">
+			<list>
+				<ref bean="daoMethodGetAll" />
+				<ref bean="daoInsert" />
+				<ref bean="daoUpdate" />
+				<ref bean="daoMethodGetByPrimaryKey" />
+				<ref bean="daoMethodGetFiltered" />
+			</list>
+		</property>
+	</bean>
+	<bean id="flexCairngormCommandCodeGenerator"
+		class="org.code4flex.generators.FlexCairngormCommandModelGenerator">
+		<property name="methodsDescriptors">
+			<list>
+				<ref bean="flexUpdateObject" />
+				<ref bean="flexInsertObject" />
+				<ref bean="flexDataGridObject" />
+				<ref bean="flexGetObject"/>
+				<ref bean="flexDataGridObjectFilter"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="entryPointCairngormTemplate" class="java.lang.String">
+	<constructor-arg type="java.lang.String"><value>/templates/flex/mainApplicationCairngormTemplate.vm</value></constructor-arg>
+	</bean>
+	<bean id="entryPointFlexMateTemplate" class="java.lang.String">
+	<constructor-arg type="java.lang.String"><value>/templates/flex/mainApplicationFlexMateTemplate.vm</value></constructor-arg>
+	</bean>
+	
+</beans>

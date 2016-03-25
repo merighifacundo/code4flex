@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:view="${entryPoint.simpleViews.get(0).namespace}.*" xmlns:control="com.adobe.cairngorm.control.*" layout="absolute">
+	
+<rds:${entryPoint.configuration.rdsServiceName} xmlns:rds="${entryPoint.configuration.serviceNamespace}.*"/>
+<router:${entryPoint.configuration.routerControllerName} xmlns:router="${entryPoint.configuration.controllerNamespace}.*"/>
+	#foreach($state in $entryPoint.stateClasses)
+	<mx:State name="${state.className}">
+			<mx:AddChild id="${state.childName}">
+				<view:${state.view} id="${state.idView}">
+			
+				</view:${state.view}>
+			</mx:AddChild>
+		</mx:State>
+	#end
+	
+</mx:Application>

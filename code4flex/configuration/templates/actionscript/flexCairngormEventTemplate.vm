@@ -1,0 +1,32 @@
+ /**
+ * ${event.className} Event.
+ * 
+ * @author Code4Flex Generator
+ * 
+ * web site: http://knowledgeit.com.ar/code4flex
+ */
+package ${event.namespace}
+{
+	import com.adobe.cairngorm.control.CairngormEvent;
+	import ${event.modelClass.namespace}.${event.modelClass.className};
+
+	public class ${event.className} extends CairngormEvent
+	{
+		static public var EVENT_ID:String="${event.eventId}";
+		#foreach( $operation in $event.service.operations )
+		static public var ${operation.nombre}:String = "${operation.nombre}";
+		#end
+		public var methodToCall:String;
+		[Bindable]
+		public var parameter:${event.modelClass.className};
+		public function ${event.className}( methodToCall:String):void
+		{
+			
+			super(EVENT_ID);
+			this.methodToCall = methodToCall;
+			this.parameter = null;
+		}
+		
+		
+	}
+}

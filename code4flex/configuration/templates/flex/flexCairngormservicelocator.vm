@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rds:ServiceLocator xmlns:rds="com.adobe.cairngorm.business.*"
+	xmlns:mx="http://www.adobe.com/2006/mxml">
+#foreach( $service in $services)
+<mx:RemoteObject id="${service.id}"  showBusyCursor="true" source="${service.source}" destination="amfphp" >
+        
+</mx:RemoteObject>
+#end
+</rds:ServiceLocator>

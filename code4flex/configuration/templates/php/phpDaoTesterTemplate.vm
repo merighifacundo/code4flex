@@ -1,0 +1,40 @@
+<?php
+include_once "../dao/${class.className}.php";
+
+${esc.dollar}daoPrueba = new ${class.className}();
+
+${esc.dollar}list = ${esc.dollar}daoPrueba->getAll${class.dtoClass.className}();
+
+
+
+
+
+
+
+?>
+
+
+<h1>Listado ${class.dtoClass.comment}</h1>
+<table>
+<tr>
+<td>Email</td><td>adultos</td><td>niños</td><td>checkin</td><td>checkout</td>
+</tr>
+<?php  for(${esc.dollar}i=0 ; ${esc.dollar}i < count(${esc.dollar}list) ; ${esc.dollar}i++){ ?>
+<tr>
+	
+	
+		#foreach( $field in $class.dtoClass.properties )
+			<td>
+			<?php echo ${esc.dollar}list[${esc.dollar}i]->${field.propertyName};?>
+			</td>
+		#end	
+
+	
+
+
+
+</tr>
+
+<?php } ?>
+
+</table>

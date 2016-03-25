@@ -1,0 +1,27 @@
+package $modelApplication.namespace
+{
+	import mx.collections.ArrayCollection;
+	
+	public class $modelApplication.className
+	{
+		
+		
+		#foreach( $actionScriptModel in $modelApplication.model)
+		[Bindable]
+		public var ${modelApplication.obtenerDtoArrayVariable($actionScriptModel)}:ArrayCollection;
+		#end
+		
+		
+		
+		
+		
+		private static var instance:$modelApplication.className = null;
+		public static function getInstance(){
+		
+			if(instance == null){
+				instance = new ${modelApplication.className}();
+			}
+			return instance;
+		}
+	}
+}

@@ -1,0 +1,63 @@
+/**
+ * ${command.className} Command.
+ * 
+ * @author Code4Flex Generator
+ * 
+ * web site: http://knowledgeit.com.ar/code4flex
+ */
+package ${command.namespace}
+{
+
+	import com.adobe.cairngorm.business.ServiceLocator;
+	import com.adobe.cairngorm.commands.ICommand;
+	import com.adobe.cairngorm.control.CairngormEvent;
+	import ${command.relation.event.namespace}.${command.relation.event.className};
+	import ${command.actionScriptModelApplication.namespace}.${command.actionScriptModelApplication.className};
+	import mx.rpc.AbstractOperation;
+	import mx.controls.Alert;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.remoting.RemoteObject;
+	import mx.utils.ArrayUtil;
+	import mx.collections.ArrayCollection;
+	
+	
+
+	public class ${command.className} implements ICommand
+	{
+		public function ${command.className}()
+		{
+		}
+		private var service:ServiceLocator = ServiceLocator.getInstance();
+		
+
+
+		public function execute(event:CairngormEvent):void
+		{
+			var myEvent:${command.relation.event.className} = event as ${command.relation.event.className};
+			var remotingObject:RemoteObject = service.getRemoteObject("${command.service.id}");
+			
+			
+			var operation:AbstractOperation = remotingObject.getOperation(myEvent.methodToCall);
+			
+			if(!operation.hasEventListener(ResultEvent.RESULT)){
+			
+			#foreach( $operation in $command.relation.event.service.operations )
+				if(myEvent.methodToCall == ${command.relation.event.className}.$operation.nombre){
+					operation.addEventListener(ResultEvent.RESULT,${command.obtenerListenerMethodName($operation.method.methodType)});
+				}
+			#end
+			}
+			if(myEvent.parameter == null)
+				operation.send();
+			else
+				operation.send(myEvent.parameter);
+			
+			
+		}
+		
+		#foreach( $method in ${command.methods})
+   		${method.methodCode}
+   		#end
+		
+	}
+}

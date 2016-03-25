@@ -1,0 +1,45 @@
+ /**
+ *  ${class.className} Model Class => Reference to PhpAmp Project.
+ * 
+ * @author Code4Flex Generator
+ * 
+ * web site: http://knowledgeit.com.ar/code4flex
+ */
+package ${package}
+{
+	
+	[Bindable]
+    [RemoteClass(alias="${package}.${class.className}")]
+    
+	public class ${class.className}
+	{
+	
+#foreach( $field in $class.properties )
+		#if($field.propertyType != 'Date')
+		[Bindable]
+		public var $field.propertyName:$field.propertyType;
+		#end
+		#if($field.propertyType == 'Date')
+		private var _$field.propertyName:$field.propertyType;
+		
+		public function get ${field.propertyName}():String{
+			 if(_${field.propertyName} == null)
+			 	return null;
+			 return  _${field.propertyName}.fullYear.toString() + '-' + _${field.propertyName}.month.toString() + '-' + _${field.propertyName}.date.toString();
+			 
+		} 
+		
+		public function set ${field.propertyName}(value:*):void{
+        	var stringDate:String = value.toString();
+        	var dateArray:Array =stringDate.split("-");
+        	_${field.propertyName} = new Date(dateArray[0],dateArray[1],dateArray[2]);
+        } 
+		
+		#end
+		
+#end
+	
+		
+
+	}
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<bodyMethod>
+<statement processTemplate="true">
+<value><![CDATA[var _myModel:${method.command.actionScriptModelApplication.className} = ${method.command.actionScriptModelApplication.className}.getInstance()]]></value>
+</statement>
+<statement processTemplate="true">
+<value><![CDATA[_myModel.${method.modelProperty}= new ArrayCollection( ArrayUtil.toArray(e.result) )]]></value>
+</statement>
+</bodyMethod>

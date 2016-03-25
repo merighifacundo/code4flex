@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding ="utf-8"?>
+<bodyMethod>
+<ifStatement value="e.result">
+<statement>
+<value>
+<![CDATA[Alert.show("La transaccion fue ejecutada correctamente")]]>
+</value>
+</statement>
+
+<else/>
+<statement>
+<value>
+<![CDATA[Alert.show("La transaccion no pudo ejecutarse")]]>
+</value>
+</statement>
+</ifStatement>
+
+</bodyMethod>

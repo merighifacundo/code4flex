@@ -1,0 +1,20 @@
+<?php
+//TABLE_NAME: ${class.comment}
+class ${class.className} {
+		var ${esc.dollar}_explicitType = "$package.${class.className}";
+#foreach( $field in $class.properties )
+		
+		//$field.comment
+		var ${esc.dollar}$field.propertyName;
+
+#end
+    
+    public function init(${esc.dollar}_toConvert){
+    	#foreach( $field in $class.properties )
+			${esc.dollar}this->$field.propertyName = ${esc.dollar}_toConvert['$field.propertyName'];
+		#end
+	}
+    
+}
+
+?>

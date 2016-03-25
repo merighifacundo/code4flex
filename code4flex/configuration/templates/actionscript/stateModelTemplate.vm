@@ -1,0 +1,20 @@
+package ${stateModel.namespace}
+{
+	public class ${stateModel.className}
+	{
+
+
+
+
+		static private var instance:${stateModel.className} = null;
+		public static function getInstance():${stateModel.className}
+		{
+			if(instance==null)
+				instance = new ${stateModel.className}();
+			return instance;
+		
+		}
+		
+	}	
+		
+}

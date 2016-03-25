@@ -1,0 +1,22 @@
+<?php
+//TABLE_NAME: ${class.dtoClass.comment}
+class ${class.className}Converter {
+
+	function convertToEntity(${esc.dollar}row){
+		
+		${esc.dollar}my${class.dtoClass.className} = new ${class.dtoClass.className}();
+#set ($i = 0) 
+#foreach( $field in $class.dtoClass.properties )
+
+		${esc.dollar}my${class.dtoClass.className}->${field.propertyName} = ${esc.dollar}row[$i];
+#set ($i = $i + 1) 
+#end		
+			return ${esc.dollar}my${class.dtoClass.className};
+	
+	
+	}
+
+
+}
+
+?>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="plugin-src"/>
+	<classpathentry kind="src" path="code-gen-src"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-httpclient-3.1.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-1.1.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-adapters-1.1.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging-api-1.1.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-net-1.4.1.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/log4j-1.2.9.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-1.5.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-dep-1.5.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-tools-1.4.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/velocity-tools-generic-1.4.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/mysql-connector-java-3.0.17-ga-bin.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-beans.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/spring-core.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-collections-3.2.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/commons-logging.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/xercesImpl.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry exported="true" kind="lib" path="lib/xml-apis.jar" sourcepath="CGFlexIntegrationsrc.zip"/>
+	<classpathentry kind="lib" path="lib/antlr-runtime-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/metaas-0.8-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/metaas-0.8.jar"/>
+	<classpathentry kind="lib" path="lib/stringtemplate-3.1-b1.jar"/>
+	<classpathentry kind="lib" path="lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="lib/xmltometaas.jar" sourcepath="/XmlToMetaas"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

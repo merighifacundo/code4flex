@@ -1,0 +1,47 @@
+<?php
+
+
+class MySqlConnection{
+
+	var ${esc.dollar}conn;
+
+	private function __construct() {}
+
+	static private  ${esc.dollar}instance = NULL;
+	
+	public static function getInstance(){
+		if(self::${esc.dollar}instance==NULL){
+			self::${esc.dollar}instance = new MySqlConnection();
+		}
+		return self::${esc.dollar}instance;
+	}
+	function connectToDb(){
+		
+		${esc.dollar}dbhost = '$host';
+		${esc.dollar}dbuser = '$dbuser';
+		#if($dbpass)
+		${esc.dollar}dbpass = '$dbpass';
+		#end
+		${esc.dollar}this->conn = mysql_connect(${esc.dollar}dbhost, ${esc.dollar}dbuser #if($dbpass),${esc.dollar}dbpass#end) or die ('Error connecting to mysql');
+		
+		${esc.dollar}dbname = '$dbname';
+		mysql_select_db(${esc.dollar}dbname);
+		
+		return ${esc.dollar}this->conn;
+	
+	}
+	
+	
+	
+	
+	
+	function closeDB(${esc.dollar}conn){ 
+	
+		mysql_close(${esc.dollar}conn);
+	
+	}
+
+
+}
+
+?>

@@ -1,0 +1,68 @@
+<?php
+//TABLE_NAME: ${class.dtoClass.comment}
+include_once "MySqlConnection.php";
+include_once "${class.className}Converter.php";
+include_once "../model/${class.dtoClass.className}.php";
+
+class ${class.className} {
+
+	
+	
+   	
+   	
+   	#foreach( $method in $class.methods)
+   		${method.methodCode}
+   	#end
+   	
+   	public function generateWhereCondition(${esc.dollar}object){
+   		${esc.dollar}whereCondition = ' where ';
+   		
+   		#set ($i = 0)  #foreach( $field in $class.dtoClass.properties) 
+   		${esc.dollar}whereCondition = ${esc.dollar}whereCondition  #if($i > 0 ) . " and "  #end . "${field.tableColumnName} " .    ((${esc.dollar}object->${field.propertyName}==NULL)?' IS NULL':  ' = ' .    #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date')  "'" .  #end ${esc.dollar}object->${field.propertyName} #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date') . "'"  #end);
+   		#set($i = $i + 1)  #end
+   		
+   		return ${esc.dollar}whereCondition;
+   	
+   	
+   	}
+   	
+   	
+   	public function generatePrimaryKeyWhereCondition(${esc.dollar}object){
+   		${esc.dollar}whereCondition = ' where ';
+   		
+   		#set ($i = 0)  #foreach( $field in $class.dtoClass.properties) 
+   		#if($field.key)
+   		${esc.dollar}whereCondition = ${esc.dollar}whereCondition  #if($i > 0 ) . " and "  #end . "${field.tableColumnName} " .    ((${esc.dollar}object->${field.propertyName}==NULL)?' IS NULL':  ' = ' .    #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date')  "'" .  #end ${esc.dollar}object->${field.propertyName} #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date') . "'"  #end);
+   		#set($i = $i + 1)
+   		#end
+   		#end
+   		#if($i == 0)
+   		${esc.dollar}whereCondition = ${esc.dollar}->generateWhereCondition(${esc.dollar}object);
+   		#end
+   		return ${esc.dollar}whereCondition;
+   	
+   	
+   	}
+   	
+   	
+   	public function generateWhereConditionWithoutNull(${esc.dollar}object){
+   		${esc.dollar}whereCondition = '';
+   		${esc.dollar}huboCondicion = false;
+   		#set ($i = 0)  #foreach( $field in $class.dtoClass.properties) 
+   		if(${esc.dollar}object->${field.propertyName}!=NULL){
+   			if(!${esc.dollar}huboCondicion){
+   				${esc.dollar}whereCondition = ' where ';
+   			}
+   			${esc.dollar}whereCondition = ${esc.dollar}whereCondition  . ((${esc.dollar}huboCondicion)?" and ":"") . "${field.tableColumnName} " .  ' = ' .    #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date')  "'" .  #end ${esc.dollar}object->${field.propertyName} #if($field.propertyType == 'java.lang.String' || $field.propertyType == 'java.util.Date' || $field.propertyType == 'java.sql.Date') . "'"  #end;
+   			${esc.dollar}huboCondicion = true;
+   		}
+   		#set($i = $i + 1)  #end
+   		
+   		return ${esc.dollar}whereCondition;
+   	
+   	
+   	}
+   	
+}
+
+?>

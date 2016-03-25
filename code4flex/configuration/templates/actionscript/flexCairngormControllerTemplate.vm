@@ -1,0 +1,25 @@
+ /**
+ * ${controller.className} Controller.
+ * 
+ * @author Code4Flex Generator
+ * 
+ * web site: http://knowledgeit.com.ar/code4flex
+ */
+package ${controller.namespace}
+{
+	import com.adobe.cairngorm.control.FrontController;
+	import ${controller.commandInfo.namespace}.*;
+	import ${controller.eventInfo.namespace}.*;
+
+	public class ${controller.className} extends FrontController
+	{
+		public function ${controller.className}()
+		{
+			super();
+			#foreach( $relation in $controller.relations)
+			addCommand(${relation.event.className}.EVENT_ID,${relation.command.className});
+			#end
+		}
+		
+	}
+}

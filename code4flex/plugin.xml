@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   	
+ 
+   	
+   	
+   	
+   	<extension
+         point="org.eclipse.ui.newWizards">
+          <category
+            name="Code4Flex"
+            id="knowldegeitcode4flex">
+      		</category>
+         
+         <wizard
+      		designer-type="true"
+            name="Code Generation Flex and Php (MySql)"
+            icon="configuration/images/c4f-logo-eclipse.gif"
+            category="knowldegeitcode4flex"
+            class="org.code4flex.cgflexintegration.action.WizardCGFlexStartAction"
+            id="org.code4flex.cgflexintegration.wizard">
+	         <description>
+	            Wizard code4flex Flex Integrating Php (MySql)
+	         </description>
+	      </wizard>
+		
+		
+
+   </extension>
+
+   
+
+</plugin>
