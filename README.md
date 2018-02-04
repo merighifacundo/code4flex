@@ -25,3 +25,10 @@ Database driver :
 Installation
 ------------
 Installation add it to the eclipse and be happy again
+
+ 
+Screenshots
+------------
+
+![Initial Screen](https://a.fsdn.com/con/app/proj/code4flex/screenshots/194611.jpg/1 "Code4Flex Plugin")
+![Second Screen](https://a.fsdn.com/con/app/proj/code4flex/screenshots/194615.jpg/1 "Code4Flex Plugin")
